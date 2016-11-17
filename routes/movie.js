@@ -6,6 +6,10 @@ router.get('/now_playing', (req, res) => {
   redisCache.get('now_playing', res);
 });
 
+router.get('/upcoming', (req, res) => {
+  redisCache.get('upcoming', res);
+});
+
 
 
 
