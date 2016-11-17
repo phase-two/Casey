@@ -15,13 +15,13 @@ client.on('error', (err) => {
 // uses redis SET command
 const set = (key, value) => {
   client.set(key, value, (err, reply) => {
-    console.log(`err: '${err}', reply: '${reply}'`);
+    //console.log(`err: '${err}', reply: '${reply}'`);
     if(err) {
       console.log(`Error: ${err}`);
     } 
 
     if(reply) {
-      console.log(`Reply: ${reply}`);
+      //console.log(`Reply: ${reply}`);
     }
   });
 }
@@ -29,13 +29,13 @@ const set = (key, value) => {
 const get = (key, res) => {
 
   client.get(key, (err, reply) => {
-    console.log(`err: '${err}', reply: '${reply}'`);
+    //console.log(`err: '${err}', reply: '${reply}'`);
 
     if(err) { 
       console.log(`Error: ${err}`);
       res.json({error: 'Error' });
     } else if(reply) { 
-      console.log(`Reply: ${reply}`); 
+      //console.log(`Reply: ${reply}`); 
       res.json(JSON.parse(reply));
     }
 

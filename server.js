@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(faviconMiddleware);
 
-app.use('/', routes.movie);
+app.use('/movie', routes.movie);
 
 
 // create postgres schema
