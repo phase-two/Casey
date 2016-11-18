@@ -1,0 +1,36 @@
+'use strict';
+
+var _axios = require('axios');
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _redisCache = require('./redisCache');
+
+var _redisCache2 = _interopRequireDefault(_redisCache);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var base_url = 'https://api.themoviedb.org/3/';
+var api_key = 'api_key=17d288a9b6104691db2b250072b0adae&language=en-US';
+var urls = {
+  nowPlaying: 'movie/now_playing?',
+  upcoming: 'movie/upcoming?'
+};
+
+var url = '';
+
+/***** fetch now playing movies *****/
+url = base_url + urls.nowPlaying + api_key;
+_axios2.default.get(url).then(function (response) {
+  _redisCache2.default.set('now_playing', JSON.stringify(response.data));
+  console.log('seeded: now_playing');
+}).catch(function (error) {
+  console.log('error:', error);
+});
+
+/***** fetch upcoming movies *****/
+url = base_url + urls.upcoming + api_key;
+_axios2.default.get(url).then(function (response) {
+  _redisCache2.default.set('upcoming', JSON.stringify(response.data));
+  console.log('seeded: upcoming');
+});
